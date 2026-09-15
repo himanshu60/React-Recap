@@ -1,33 +1,28 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const parent = React.createElement("div", { id: "parent", key: "parent" }, [
-  React.createElement("div", { id: "child1", key: "child1" }, [
-    React.createElement(
-      "h1",
-      {key: "h1-child1"},
-      "Hello, h1! from React by using Parent to child1 element",
-    ),
-    React.createElement(
-      "h2",
-      {key: "h2-child1"},
-      "Hello, h2! from React by using Parent to child element",
-    ),
-  ]),
-  React.createElement("div", { id: "child2", key: "child2" }, [
-    React.createElement(
-      "h1",
-      {key: "h1-child2"},
-      "Hello, h1! from React by using Parent to child2 element",
-    ),
-    React.createElement(
-      "h2",
-      {key: "h2-child2"},
-      "Hello, h2! from React by using Parent to child element",
-    ),
-  ]),
-]);
+const heading= React.createElement("h1", { id: "title" }, "Hello World from React");
+const jsxHeading =(<h1 id="title">
+  Hello World from JSX
+  </h1>) ;
+
+
+const Title =() =>{return(
+  <h1 id="title">Hello title injected from Functional component</h1>
+)}
+  // functional component
+  const HeaderComponent = () => {return (
+    <>
+    <div> <Title /></div>
+    <div id="container">
+      
+       <h1 id="title">Hello World from Functional component</h1>
+    </div></>
+    
+  )};
+  
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(parent);
-console.log(parent);
+// root.render(heading);
+root.render(<HeaderComponent />);
+// console.log(parent);
