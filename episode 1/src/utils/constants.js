@@ -8,7 +8,12 @@ export const LogoURL = "https://t3.ftcdn.net/jpg/08/29/90/88/360_F_829908823_kYs
 
 // Relative path on purpose: Parcel's dev server forwards /dapi to swiggy.com
 // (see .proxyrc), so the browser treats this as a same-origin request.
-export const SWIGGY_API =
-    "/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING";
+export const SWIGGY_API ="https://namastedev.com/api/v1/listRestaurants/";
+
+// FULL url, not a relative one: the menu endpoint blocks Parcel's Node-side
+// proxy (it answers 202 with an empty body), so the request has to be made by
+// Chrome itself. That means CORS applies -> the Allow CORS extension must be
+// toggled ON for this to return data.
+export const RESID_API = "https://namastedev.com/api/v1/listRestaurantMenu/"
 
 // export default { CDN_URL, FALLBACK_IMG, LogoURL }

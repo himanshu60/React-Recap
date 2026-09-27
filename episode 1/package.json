@@ -10,11 +10,15 @@
     "start": "parcel index.html",
     "build": "parcel build index.html"
   },
+  "@parcel/resolver-default": {
+    "packageExports": true
+  },
   "devDependencies": {
     "parcel": "^2.16.4"
   },
   "dependencies": {
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.4"
   }
 }

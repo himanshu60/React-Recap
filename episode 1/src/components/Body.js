@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import RestaurantCardSkeleton from "./RestaurantCardSkeleton";
 import { SWIGGY_API } from "../utils/constants";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   // `List` is the master copy from the API and never changes after the fetch.
@@ -34,10 +35,12 @@ const Body = () => {
       // STEP 3 - Read the body and parse the JSON text into a JS object.
       const json = await response.json();
 
-      // STEP 4 - Unwrap the outer envelope: { data: { cards: [...] } }
+      // STEP 4 - Unwrap the envelope. This endpoint wraps Swiggy's own
+      // response, so there are TWO levels of `data` before `cards`:
+      //   { status, message, data: { data: { cards: [...] } } }
       // `cards` is a MIXED list - banners, the "what's on your mind" row,
       // filter bars, the footer, AND the restaurant grid.
-      const { cards } = json.data;
+      const { cards } = json.data.data;
       // console.log(cards)
       // STEP 5 - Find the card holding the restaurant grid.
       // Its position shifts between requests, so match on SHAPE, not index:
@@ -107,7 +110,7 @@ const Body = () => {
             <RestaurantCardSkeleton key={i} />
           ))
           : filteredList.map((restaurant) => (
-            <RestaurantCard key={restaurant?.info?.id} resData={restaurant} />
+            <Link key={restaurant?.info?.id} to={"/restaurants/"+ restaurant?.info?.id}><RestaurantCard  resData={restaurant} /></Link>
           ))}
       </div>
 
