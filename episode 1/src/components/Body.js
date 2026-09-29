@@ -3,6 +3,7 @@ import RestaurantCardSkeleton from "./RestaurantCardSkeleton";
 import { SWIGGY_API } from "../utils/constants";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   // `List` is the master copy from the API and never changes after the fetch.
@@ -70,6 +71,14 @@ const Body = () => {
       // never get stuck on screen forever.
       setIsLoading(false);
     }
+  }
+
+  const onlineStatus =useOnlineStatus();
+  console.log(onlineStatus)
+  if(onlineStatus === false ) {
+    return(
+      <h1>Looks like you are offline!! please check your internet Connection;</h1>
+    )
   }
 
   return (

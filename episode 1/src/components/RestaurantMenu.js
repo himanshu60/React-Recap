@@ -1,27 +1,12 @@
-import { useEffect, useState } from "react";
 import { RESID_API } from "../utils/constants";
 import Skeleton from "./Skeleton";
 import { useParams } from "react-router-dom";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 
 const RestaurantMenu = () => {
-
-    const [resInfo, setResInfo] = useState(null)
     const {resId} = useParams();
-    // console.log(params)
-
-
-    useEffect(() => {
-        fetchMenu();
-    }, [])
-
-    const fetchMenu = async () => {
-        const data = await fetch(RESID_API + resId);
-        const json = await data.json();
-        console.log(json);
-        setResInfo(json.data)
-    };
-
+    const resInfo =useRestaurantMenu(resId);
     // Guard FIRST: the lines below need data, and they run on every render -
     // including the first one, before the fetch has finished.
     if (resInfo === null) return <Skeleton />;
