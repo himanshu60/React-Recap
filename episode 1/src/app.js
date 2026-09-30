@@ -11,7 +11,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom"
 const About = lazy(() => import("./components/About"))
 const AppLayout = () => {
   return (
-    <div className="app">
+    <div className="app min-h-screen bg-[#f8faf9] text-slate-900 antialiased">
       <Header />
       <Outlet />
     </div>

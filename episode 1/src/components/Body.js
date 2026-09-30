@@ -82,14 +82,14 @@ const Body = () => {
   }
 
   return (
-    <div className="body">
-      <div className="filter">
-        <div className="search">
-          <input type="text" className="search-box" value={searchText}
+    <main className="body">
+      <div className="filter mx-auto flex max-w-[1320px] flex-wrap items-center gap-3 px-6 pt-6">
+        <div className="search flex min-w-[230px] flex-1 gap-2">
+          <input type="text" className="min-w-0 flex-1 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10" aria-label="Search restaurants" value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value)
             }} />
-          <button className="search-btn"
+          <button className="search-btn rounded-lg bg-emerald-700 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700"
             onClick={() => {
               // Always search the MASTER list, never the already-filtered one,
               // otherwise each search narrows what the next one can find.
@@ -102,7 +102,7 @@ const Body = () => {
           >Search</button>
 
         </div>
-        <button className="filter-btn" onClick={() => {
+        <button className="filter-btn rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition-colors hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700" onClick={() => {
           // Same rule: filter from `List`, render into `filteredList`, so the
           // full set is still there when the user clears the filter.
           const filterList = List.filter((res) => res?.info?.avgRating > 4.4);
@@ -119,7 +119,7 @@ const Body = () => {
             <RestaurantCardSkeleton key={i} />
           ))
           : filteredList.map((restaurant) => (
-            <Link key={restaurant?.info?.id} to={"/restaurants/"+ restaurant?.info?.id}><RestaurantCard  resData={restaurant} /></Link>
+            <Link className="block text-inherit no-underline" key={restaurant?.info?.id} to={"/restaurants/"+ restaurant?.info?.id}><RestaurantCard  resData={restaurant} /></Link>
           ))}
       </div>
 
@@ -128,7 +128,7 @@ const Body = () => {
         <p className="no-results">No restaurants matched your search.</p>
       )}
 
-    </div>
+    </main>
   )
 }
 
